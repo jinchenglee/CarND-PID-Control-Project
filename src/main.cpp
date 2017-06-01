@@ -34,7 +34,7 @@ int main()
 
   PID pid;
   // TODO: Initialize the pid variable.
-  pid.Init(0.08, 0.00002, 0.05);
+  pid.Init(0.1, 0.00003, 0.2);
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
@@ -72,7 +72,7 @@ int main()
 
           // Slow down in sharp turns
           if((fabs(steer_value)>0.1) && (speed > 15.0))
-              throttle = -0.3;
+              throttle = -0.01*speed;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
